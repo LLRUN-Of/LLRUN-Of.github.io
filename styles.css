@@ -1,0 +1,176 @@
+/* MySite — 设计令牌与基础样式
+   规则：一种底色、一种正文色、一个强调色；无渐变、无静止阴影、无小标签帽。 */
+
+:root {
+  --ground: #f2f3f1;
+  --surface: #e7e9e6;
+  --ink: #111413;
+  --ink-soft: #5b6260;
+  --accent: #0f6b5c;
+
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --step-1: clamp(1.25rem, 1.1rem + 0.7vw, 1.6rem);
+  --step-3: clamp(2.6rem, 1.6rem + 6vw, 6.5rem);
+
+  --gap: clamp(1rem, 0.6rem + 1.4vw, 2rem);
+  --section: clamp(5rem, 3rem + 9vw, 11rem);
+  --measure: 62ch;
+
+  --font: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--step-0);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+.skip:focus {
+  left: var(--gap);
+  top: var(--gap);
+  z-index: 10;
+  background: var(--ink);
+  color: var(--ground);
+  padding: 0.6em 0.9em;
+  text-decoration: none;
+}
+
+/* —— 顶栏：词标 + 几个朴素链接，无背景模糊、无浮起药丸 —— */
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  align-items: baseline;
+  justify-content: space-between;
+  padding: var(--gap) clamp(1rem, 4vw, 4rem);
+}
+.wordmark {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+.nav { display: flex; gap: clamp(0.9rem, 2.5vw, 2rem); }
+.nav a {
+  text-decoration: none;
+  color: var(--ink-soft);
+  padding-bottom: 0.15em;
+  border-bottom: 2px solid transparent;
+}
+.nav a:hover, .nav a:focus-visible {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+/* —— 各区共用版心 —— */
+main > section {
+  padding: var(--section) clamp(1rem, 4vw, 4rem);
+  max-width: 78rem;
+  margin: 0 auto;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+h1 { font-size: var(--step-3); }
+h2 { font-size: var(--step-1); margin-bottom: 1.6rem; }
+h3 { font-size: var(--step-0); }
+
+p { margin: 0 0 1.1em; max-width: var(--measure); }
+
+/* —— 主屏：字大、事少 —— */
+.hero { padding-top: clamp(3rem, 8vw, 8rem); }
+.statement {
+  font-size: var(--step-1);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-top: 0.8em;
+  color: var(--ink);
+}
+.hero-action { margin-top: 2.2rem; }
+
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  padding: 0.7em 1.3em;
+  font-weight: 500;
+}
+.btn:hover, .btn:focus-visible { background: var(--ink); }
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* —— 项目：用行列表，不用卡片网格 —— */
+.work { background: var(--surface); }
+.work-list { list-style: none; margin: 0; padding: 0; }
+.work-list li {
+  padding: 1.6rem 0;
+  border-top: 1px solid transparent;
+  max-width: var(--measure);
+}
+.work-list li + li { box-shadow: 0 -1px 0 rgb(17 20 19 / 0.14); }
+.work-list p { margin: 0.5em 0 0; }
+.meta { color: var(--ink-soft); }
+.meta a { color: var(--accent); }
+
+/* —— 联系 —— */
+.contact-line { margin-top: 1.6rem; }
+
+/* —— 页脚：名字回到全宽 —— */
+.foot {
+  padding: var(--section) clamp(1rem, 4vw, 4rem) var(--gap);
+  max-width: 78rem;
+  margin: 0 auto;
+}
+.foot-name {
+  font-size: clamp(2rem, 1rem + 8vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+  max-width: none;
+  margin: 0 0 0.5em;
+}
+.foot-note { color: var(--ink-soft); font-size: 0.9rem; }
+
+/* —— 入场动画：默认可见，脚本可用时才加位移 —— */
+.reveal { opacity: 1; }
+.js-motion .reveal {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.js-motion .reveal.is-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 520ms ease, transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js-motion .reveal { opacity: 1; transform: none; }
+  .js-motion .reveal.is-in { transition: none; }
+}
+
+@media (max-width: 30rem) {
+  .bar { gap: 0.5rem; }
+  .nav { gap: 1rem; }
+}
