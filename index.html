@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LLRUN — 个人主页</title>
-<meta name="description" content="LLRUN 的个人主页：写代码，也做点小工具。">
+<meta name="description" content="LLRUN 的个人主页：写代码，也做点小工具。本页面由 DeepSeek Harness 协作完成。">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,6 +14,7 @@
   <a class="wordmark" href="#top">LLRUN</a>
   <nav class="nav" aria-label="主导航">
     <a href="#work">项目</a>
+    <a href="#about">关于</a>
     <a href="#contact">联系</a>
   </nav>
 </header>
@@ -33,6 +34,19 @@
         <h3>MFC 制作的简易画板</h3>
       </li>
     </ul>
+  </section>
+
+  <section class="about" id="about">
+    <h2 class="reveal">关于这个页面</h2>
+    <p class="reveal">本页面的 HTML、样式与验收，由 <strong>DeepSeek Harness</strong> 完成。它是一个在终端里工作的 AI 编码代理：通过对话接受需求，直接改文件、跑检查、发布上线。</p>
+    <p class="reveal">页面从零写出结构与样式后，在本地跑了 11 项检查（其中 2 项是负向对照），再通过 GitHub REST API 发布到 GitHub Pages，最后在公网核对页面内容是否真的更新、以及不存在的路径是否返回 404。</p>
+    <figure class="shot reveal">
+      <a href="img/dsh-agent.jpg" target="_blank" rel="noopener">
+        <img src="img/dsh-agent.jpg" width="1600" height="1026" loading="lazy" decoding="async"
+             alt="DeepSeek Harness 的界面截图：左侧是会话列表与工作区，右侧是与 AI 编码代理协作搭建本站的对话记录">
+      </a>
+      <figcaption>与 DeepSeek Harness 协作时的界面截图，点击可看大图。</figcaption>
+    </figure>
   </section>
 
   <section class="contact" id="contact">
